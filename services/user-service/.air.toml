@@ -1,0 +1,19 @@
+# .air.toml
+# Root directory where Air watches for changes
+root = "."
+
+# Temporary directory for compiled files
+tmp_dir = "tmp"
+
+# Build settings
+[build]
+cmd = "go build -o main ./cmd/main.go"
+bin = "main"
+full_bin = "./main"
+include_ext = ["go"]
+exclude_dir = ["vendor", "tmp"]
+delay = 1000 # 1 second delay before restarting
+
+# Logging settings
+[log]
+time = true

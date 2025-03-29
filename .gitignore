@@ -1,0 +1,31 @@
+# Go build artifacts
+/bin/
+/pkg/
+/*.exe
+/*.out
+/*.test
+
+# Air (Live reload)
+tmp/
+
+# Go modules
+/go.sum
+/go.mod
+
+# Docker
+docker-compose.override.yml
+.dockerignore
+
+# Logs & temp files
+*.log
+*.swp
+*.swo
+*.bak
+.DS_Store
+
+# IDE/editor-specific files
+.vscode/
+.idea/
+*.iml
+
+# Go
