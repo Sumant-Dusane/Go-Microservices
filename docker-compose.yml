@@ -13,6 +13,8 @@ services:
     build:
       context: ./services/transfer-service
       dockerfile: Dockerfile
+    depends_on:
+      - user_service
     networks:
       - server_network
     ports:
