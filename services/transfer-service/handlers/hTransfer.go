@@ -8,6 +8,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"swamisamartha.com/transfer-service/db"
 )
 
 type User struct {
@@ -19,12 +20,21 @@ type User struct {
 
 func GetBalance(c *gin.Context) {
 	username, err := getUser()
+
+	t, errr := db.Get()
+
+	if errr != nil {
+		err := fmt.Sprintf("Something went wrong: %v", err)
+		c.JSON(http.StatusInternalServerError, err)
+		return
+	}
+
 	if err != nil {
 		err := fmt.Sprintf("Something went wrong: %s", err)
 		c.JSON(http.StatusInternalServerError, err)
 		return
 	}
-	c.JSON(http.StatusAccepted, gin.H{"user": username, "balance": "1000000000000000$"})
+	c.JSON(http.StatusAccepted, gin.H{"user": username, "balance": "1000000000000000$", "history": t})
 }
 
 func getUser() (*User, error) {

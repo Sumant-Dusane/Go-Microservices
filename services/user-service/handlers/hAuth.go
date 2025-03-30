@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"swamisamartha.com/user-service/db"
 )
 
 type User struct {
@@ -14,11 +15,11 @@ type User struct {
 }
 
 func GetUser(c *gin.Context) {
-	user := User{
-		Id:       "123",
-		Name:     "Sumant",
-		Email:    "sumant.dusane1966@gmail.com",
-		Nickname: "c0mrade",
+	// user, err := db.Get()
+	user, err := db.GetById("551137c2f9e1fac808a5f572")
+	if err != nil {
+		c.JSON(http.StatusBadRequest, err.Error())
+		return
 	}
 	c.JSON(http.StatusOK, user)
 }

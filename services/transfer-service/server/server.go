@@ -5,11 +5,7 @@ import (
 	"net/http"
 )
 
-func InitTransferService() {
-	startHttpServer()
-}
-
-func startHttpServer() *http.Server {
+func StartHttpServer() *http.Server {
 	router := NewTransferRouter()
 
 	srv := &http.Server{

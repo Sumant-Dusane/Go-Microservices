@@ -29,10 +29,8 @@ func InitDB() {
 
 	log.Println("✅ Connected to MongoDB!")
 	mClient = client
-}
 
-func GetUserCollection() *mongo.Collection {
-	return mClient.Database("swami_samartha").Collection("transfer")
+	TransferCollection = mClient.Database("swami_samartha").Collection("transfers")
 }
 
 func CloseDB() {
