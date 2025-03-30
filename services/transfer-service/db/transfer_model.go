@@ -9,8 +9,12 @@ import (
 )
 
 type Transfers struct {
-	Id     string `json:"_id"`
-	Amount string `json:"amt"`
+	Id string `json:"_id"`
+	TransferDto
+}
+
+type TransferDto struct {
+	Amount float64 `json:"amt"`
 }
 
 var TransferCollection *mongo.Collection
@@ -48,4 +52,14 @@ func GetById(id string) (*Transfers, error) {
 	}
 
 	return &transfer, nil
+}
+
+func Add(transfer *TransferDto) (*mongo.InsertOneResult, error) {
+	newId, err := TransferCollection.InsertOne(context.TODO(), transfer)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return newId, nil
 }

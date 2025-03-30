@@ -10,7 +10,10 @@ func NewTransferRouter() *gin.Engine {
 
 	router.GET("/", handlers.GetIndex)
 	router.GET("/health", handlers.GetHealth)
+	router.GET("/transfer/", handlers.GetTransfers)
 	router.GET("/transfer/balance", handlers.GetBalance)
+
+	router.POST("transfer/new", handlers.AddNewTransfer)
 
 	return router
 }
