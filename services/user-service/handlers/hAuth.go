@@ -4,12 +4,17 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-
-	"swamisamartha.com/shared"
 )
 
+type User struct {
+	Id       string `json:"id"`
+	Nickname string `json:"nickname"`
+	Name     string `json:"name"`
+	Email    string `json:"email"`
+}
+
 func GetUser(c *gin.Context) {
-	user := shared.User{
+	user := User{
 		Id:       "123",
 		Name:     "Sumant",
 		Email:    "sumant.dusane1966@gmail.com",

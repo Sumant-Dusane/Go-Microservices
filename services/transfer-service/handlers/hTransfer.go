@@ -8,9 +8,14 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-
-	"swamisamartha.com/shared"
 )
+
+type User struct {
+	Id       string `json:"id"`
+	Nickname string `json:"nickname"`
+	Name     string `json:"name"`
+	Email    string `json:"email"`
+}
 
 func GetBalance(c *gin.Context) {
 	username, err := getUser()
@@ -22,7 +27,7 @@ func GetBalance(c *gin.Context) {
 	c.JSON(http.StatusAccepted, gin.H{"user": username, "balance": "1000000000000000$"})
 }
 
-func getUser() (*shared.User, error) {
+func getUser() (*User, error) {
 	url := "http://user_service:8080/auth/user"
 
 	res, err := http.Get(url)
@@ -40,7 +45,7 @@ func getUser() (*shared.User, error) {
 		return nil, fmt.Errorf("error while reading response")
 	}
 
-	var user shared.User
+	var user User
 
 	if err := json.Unmarshal(body, &user); err != nil {
 		log.Printf("[Transfer Service > getUser]: %s", err.Error())

@@ -5,11 +5,7 @@ import (
 	"net/http"
 )
 
-func InitUserService() {
-	startHttpServer()
-}
-
-func startHttpServer() *http.Server {
+func StartHttpServer() *http.Server {
 	router := NewUserServiceRouter()
 
 	srv := &http.Server{
